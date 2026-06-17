@@ -2,6 +2,19 @@
 
 Proyecto desarrollado en Django y MySQL para registrar actividades al aire libre, consultar información climática en tiempo real mediante la API Open-Meteo y calcular el nivel de riesgo climático mediante un procedimiento almacenado en MySQL.
 
+## Captura de Pantalla
+
+![Sistema de Monitoreo Climático](docs/screenshot.png)
+
+## Características
+
+- CRUD completo de actividades
+- Consumo de API REST Open-Meteo
+- Procedimiento almacenado MySQL
+- Cálculo automático de riesgo climático
+- Diseño responsivo con CSS
+- Colores automáticos según nivel de riesgo
+
 ## Tecnologías utilizadas
 
 - Python
