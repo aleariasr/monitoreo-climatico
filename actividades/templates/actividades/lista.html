@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monitoreo Climático</title>
+    <link rel="stylesheet" href="{% static 'actividades/styles.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div>
+            <h1>Sistema de Monitoreo Climático</h1>
+            <p class="subtitle">Registro de actividades al aire libre con evaluación climática en tiempo real.</p>
+        </div>
+
+        <a href="{% url 'crear_actividad' %}" class="btn btn-nuevo">+ Nueva Actividad</a>
+    </div>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="card">
+        <table>
+            <tr>
+                <th>Actividad</th>
+                <th>Ubicación</th>
+                <th>Temperatura</th>
+                <th>Viento</th>
+                <th>Precipitación</th>
+                <th>Riesgo</th>
+                <th>Acciones</th>
+            </tr>
+
+            {% for actividad in actividades %}
+            <tr>
+                <td>{{ actividad.nombre_actividad }}</td>
+                <td>{{ actividad.ubicacion }}</td>
+                <td>{{ actividad.temperatura|default:"Sin consultar" }}</td>
+                <td>{{ actividad.velocidad_viento|default:"Sin consultar" }}</td>
+                <td>{{ actividad.precipitacion|default:"Sin consultar" }}</td>
+                <td>
+                    {% if actividad.nivel_riesgo %}
+                        <span class="riesgo {{ actividad.nivel_riesgo }}">
+                            {{ actividad.nivel_riesgo }}
+                        </span>
+                    {% else %}
+                        Sin consultar
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'editar_actividad' actividad.id %}" class="btn btn-editar">Editar</a>
+                    <a href="{% url 'eliminar_actividad' actividad.id %}" class="btn btn-eliminar">Eliminar</a>
+                    <a href="{% url 'consultar_clima' actividad.id %}" class="btn btn-clima">Consultar Clima</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="empty">No hay actividades registradas.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

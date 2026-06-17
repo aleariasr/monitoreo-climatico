@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ titulo }}</title>
+    <link rel="stylesheet" href="{% static 'actividades/styles.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>{{ titulo }}</h2>
+
+        <br>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="btn btn-nuevo">Guardar</button>
+            <a href="{% url 'lista_actividades' %}" class="btn btn-volver">Volver</a>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

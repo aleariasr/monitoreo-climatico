@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar actividad</title>
+    <link rel="stylesheet" href="{% static 'actividades/styles.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>¿Eliminar {{ actividad.nombre_actividad }}?</h2>
+
+        <br>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-eliminar">Eliminar</button>
+            <a href="{% url 'lista_actividades' %}" class="btn btn-volver">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
